@@ -1,11 +1,11 @@
-import { Checkbox, createMuiTheme, FormControlLabel, Grid, makeStyles, MuiThemeProvider, Paper, Typography } from "@material-ui/core";
-import { blue, grey } from "@material-ui/core/colors";
-import React, { useState } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import {Checkbox, createMuiTheme, FormControlLabel, Grid, makeStyles, MuiThemeProvider, Paper, Theme, Typography} from "@material-ui/core";
+import {blue, grey} from "@material-ui/core/colors";
+import React, {useState} from "react";
+import {FormattedMessage, useIntl} from "react-intl";
 import Switch from "Switch";
 
 const App = () => {
-    const { formatMessage } = useIntl();
+    const {formatMessage} = useIntl();
     const classes = useStyles();
     const [isSwitchChecked, setSwitchChecked] = useState(false);
     const [isSwitchDisabled, setSwitchDisabled] = useState(false);
@@ -35,14 +35,13 @@ const App = () => {
                             <Typography variant="subtitle1">
                                 <FormattedMessage id="type.uncontrolled" />
                             </Typography>
-                            <Switch defaultChecked disabled={isSwitchDisabled} onChange={checked => alert(`checked: ${checked}`)} />
+                            <Switch defaultChecked disabled={isSwitchDisabled} onChange={(checked: boolean) => alert(`checked: ${checked}`)} />
                         </Paper>
                     </Grid>
                     <Grid item xs={12}>
-                        <FormControlLabel className={classes.checkbox} label={formatMessage({ id: "toggle.disabled" })} control={<Checkbox color="primary" onClick={onToggleDisable} checked={isSwitchDisabled} />} />
+                        <FormControlLabel className={classes.checkbox} label={formatMessage({id: "toggle.disabled"})} control={<Checkbox color="primary" onClick={onToggleDisable} checked={isSwitchDisabled} />} />
                     </Grid>
                 </Grid>
-
             </div>
         </MuiThemeProvider>
     );
@@ -56,7 +55,7 @@ const theme = createMuiTheme({
     },
 });
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         display: "flex",
         justifyContent: "center",

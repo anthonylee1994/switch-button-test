@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./index.css";
 
 interface SwitchProps {
@@ -8,8 +8,8 @@ interface SwitchProps {
     disabled?: boolean;
 }
 
-const Switch: React.FunctionComponent<SwitchProps> = ({ defaultChecked, checked, disabled, onChange }) => {
-    const onCheckboxChange = ({ target: { checked } }: any) => {
+const Switch: React.FunctionComponent<SwitchProps> = ({defaultChecked, checked, disabled, onChange}) => {
+    const onCheckboxChange = ({target: {checked}}: any) => {
         if (typeof onChange === "function") {
             onChange(defaultChecked ? checked : !checked);
         }
