@@ -1,11 +1,11 @@
-import {Checkbox, createMuiTheme, FormControlLabel, Grid, makeStyles, MuiThemeProvider, Paper, Typography} from "@material-ui/core";
-import {blue, grey} from "@material-ui/core/colors";
-import React, {useState} from "react";
-import {FormattedMessage, useIntl} from "react-intl";
+import { Checkbox, createMuiTheme, FormControlLabel, Grid, makeStyles, MuiThemeProvider, Paper, Typography } from "@material-ui/core";
+import { blue, grey } from "@material-ui/core/colors";
+import React, { useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 import Switch from "Switch";
 
 const App = () => {
-    const {formatMessage} = useIntl();
+    const { formatMessage } = useIntl();
     const classes = useStyles();
     const [isSwitchChecked, setSwitchChecked] = useState(false);
     const [isSwitchDisabled, setSwitchDisabled] = useState(false);
@@ -28,7 +28,6 @@ const App = () => {
                                 <FormattedMessage id="type.controlled" />
                             </Typography>
                             <Switch checked={isSwitchChecked} disabled={isSwitchDisabled} onChange={onChange} />
-                            <FormControlLabel label={formatMessage({id: "toggle.disabled"})} control={<Checkbox color="primary" onClick={onToggleDisable} checked={isSwitchDisabled} />} />
                         </Paper>
                     </Grid>
                     <Grid item xs={12}>
@@ -36,10 +35,14 @@ const App = () => {
                             <Typography variant="subtitle1">
                                 <FormattedMessage id="type.uncontrolled" />
                             </Typography>
-                            <Switch uncontrolled />
+                            <Switch defaultChecked disabled={isSwitchDisabled} onChange={checked => alert(`checked: ${checked}`)} />
                         </Paper>
                     </Grid>
+                    <Grid item xs={12}>
+                        <FormControlLabel className={classes.checkbox} label={formatMessage({ id: "toggle.disabled" })} control={<Checkbox color="primary" onClick={onToggleDisable} checked={isSwitchDisabled} />} />
+                    </Grid>
                 </Grid>
+
             </div>
         </MuiThemeProvider>
     );
@@ -53,7 +56,7 @@ const theme = createMuiTheme({
     },
 });
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
         justifyContent: "center",
@@ -64,6 +67,9 @@ const useStyles = makeStyles((theme: any) => ({
     },
     container: {
         maxWidth: 300,
+    },
+    checkbox: {
+        margin: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
     },
     paper: {
         margin: theme.spacing(1),
